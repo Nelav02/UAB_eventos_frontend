@@ -15,6 +15,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatButtonModule} from '@angular/material/button';
+import {MatListModule} from '@angular/material/list';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -36,6 +38,7 @@ import { DashboardUserComponent } from './user/dashboard-user/dashboard-user.com
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
+    FlexLayoutModule,
 
     MatInputModule,
     MatToolbarModule,
@@ -43,7 +46,8 @@ import { DashboardUserComponent } from './user/dashboard-user/dashboard-user.com
     MatIconModule,
     MatSidenavModule,
     MatSnackBarModule,
-    MatButtonModule
+    MatButtonModule,
+    MatListModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

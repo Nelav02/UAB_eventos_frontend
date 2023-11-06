@@ -1,1 +1,56 @@
-<p>dashboard-admin works!</p>
+<div class="example-container">
+    <mat-toolbar color="primary" class="example-toolbar">
+        <button mat-icon-button (click)="snav.toggle()">
+            <mat-icon>local_library</mat-icon>
+        </button>
+        <h1 class="example-app-name">UAB EVENTOS</h1>
+    </mat-toolbar>
+
+    <mat-sidenav-container class="example-sidenav-container">
+        <mat-sidenav #snav>            
+
+            <mat-action-list>
+
+                <div mat-subheader>Menú</div>
+
+                <mat-divider></mat-divider>
+
+                <button mat-list-item>
+                    <mat-icon matListItemIcon>home</mat-icon> Inicio
+                </button>
+
+                <button mat-list-item>
+                    <mat-icon matListItemIcon>account_circle</mat-icon> Perfil
+                </button>
+
+                <button mat-list-item>
+                    <mat-icon matListItemIcon>group</mat-icon> Usuarios
+                </button>
+
+                <button mat-list-item>
+                    <mat-icon matListItemIcon>calendar_month</mat-icon> Eventos generales
+                </button>
+
+                <button mat-list-item>
+                    <mat-icon matListItemIcon>event_available</mat-icon> Eventos asignados
+                </button>
+
+                <button mat-list-item>
+                    <mat-icon matListItemIcon>event_busy</mat-icon> Eventos culminados
+                </button>
+
+                <button mat-list-item>
+                    <mat-icon matListItemIcon>description</mat-icon> Reportes
+                </button>
+
+                <mat-divider></mat-divider>
+
+                <button mat-list-item>
+                    <mat-icon matListItemIcon>logout</mat-icon> Salir
+                </button>
+                
+            </mat-action-list>
+
+        </mat-sidenav>
+    </mat-sidenav-container>
+</div>

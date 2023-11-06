@@ -4,6 +4,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { DashboardAdminComponent } from './admin/dashboard-admin/dashboard-admin.component';
 import { adminGuard } from './services/guards/admin.guard';
 import { DashboardUserComponent } from './user/dashboard-user/dashboard-user.component';
+import { userGuard } from './services/guards/user.guard';
 
 const routes: Routes = [
   {
@@ -19,7 +20,7 @@ const routes: Routes = [
   {
     path: 'user',
     component: DashboardUserComponent,
-    pathMatch: 'full'
+    canActivate: [userGuard]
   }
 ];
 
