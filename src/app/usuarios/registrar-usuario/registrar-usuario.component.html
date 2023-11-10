@@ -1,0 +1,77 @@
+<h1 mat-dialog-title> Registrar usuario </h1>
+<mat-divider></mat-divider>
+
+<form>
+    <div mat-dialog-content>
+        <mat-form-field appearance="fill" class="spacer-rigth">
+            <mat-label>Nombre</mat-label>
+            <input required matInput type="text" placeholder="Ingrese su nombre">
+            <mat-icon matSuffix>person_pin_circle</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Apellidos</mat-label>
+            <input required matInput type="text" placeholder="Ingrese su apellido">
+            <mat-icon matSuffix>person_pin_circle</mat-icon>
+        </mat-form-field>
+
+        <br>
+
+        <mat-form-field appearance="fill" class="spacer-rigth">
+            <mat-label>Email</mat-label>
+            <input required matInput type="email" placeholder="ejemplo@uab.edu.bo" [formControl]="email">
+            <mat-icon matSuffix>mail</mat-icon>
+            <mat-error *ngIf="email.invalid">{{ getEmailError() }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Contraseña</mat-label>
+            <input required matInput type="password" placeholder="Ingrese su contraseña" [type]="hide ? 'password' : 'text'" [formControl]="password">
+            <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+            <mat-error *ngIf="password.invalid">{{ getPasswordError() }}</mat-error>
+        </mat-form-field>
+
+        <br>
+
+        <mat-form-field appearance="fill" class="spacer-rigth">
+            <mat-label>Teléfono</mat-label>
+            <input required matInput type="text" maxlength="8" minlength="7" placeholder="777 - 777 - 77" #input>
+            <mat-hint align="end">{{ input.value.length }}/8</mat-hint>
+            <mat-icon matSuffix>phone</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Género</mat-label>
+            <mat-select>
+                <mat-option value="HOMBRE">Hombre</mat-option>
+                <mat-option value="MUJER">Mujer</mat-option>
+            </mat-select>
+            <mat-icon matSuffix>man</mat-icon>
+        </mat-form-field>
+
+        <br>
+
+        <mat-form-field appearance="fill" class="spacer-rigth">
+            <mat-label>Rol</mat-label>
+            <mat-select>
+                <mat-option value="ADMIN">Administrador</mat-option>
+                <mat-option value="USER">Técnico</mat-option>
+            </mat-select>
+            <mat-icon matSuffix>key</mat-icon>
+        </mat-form-field>
+
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div mat-dialog-actions align="end">
+      <button mat-flat-button color="warn" (click)="onNoClick()">
+        <mat-icon>close</mat-icon> Cancelar
+      </button>
+      <button mat-flat-button color="primary">
+        <mat-icon>done</mat-icon> Guardar
+      </button>
+    </div>
+</form>

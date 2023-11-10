@@ -5,6 +5,8 @@ import { DashboardAdminComponent } from './admin/dashboard-admin/dashboard-admin
 import { adminGuard } from './services/guards/admin.guard';
 import { DashboardUserComponent } from './user/dashboard-user/dashboard-user.component';
 import { userGuard } from './services/guards/user.guard';
+import { ListaUsuariosComponent } from './usuarios/lista-usuarios/lista-usuarios.component';
+import { ListaEventosComponent } from './eventos/lista-eventos/lista-eventos.component';
 
 const routes: Routes = [
   {
@@ -15,7 +17,17 @@ const routes: Routes = [
   {
     path: 'admin',
     component: DashboardAdminComponent,
-    canActivate: [adminGuard]
+    canActivate: [adminGuard],
+    children: [
+      {
+        path: 'lista_usuarios',
+        component: ListaUsuariosComponent
+      },
+      {
+        path: 'lista_eventos',
+        component: ListaEventosComponent
+      }
+    ]
   },
   {
     path: 'user',

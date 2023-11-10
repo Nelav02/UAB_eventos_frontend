@@ -24,3 +24,12 @@ h1.example-app-name {
 .example-is-mobile .example-sidenav-container {
     flex: 1 0 auto;
 }
+
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+.example-sidenav-content {
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    padding: 15px;
+}

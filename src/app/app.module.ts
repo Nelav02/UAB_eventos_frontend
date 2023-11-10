@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +16,13 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatListModule} from '@angular/material/list';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatTableModule} from '@angular/material/table';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSortModule} from '@angular/material/sort';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatSelectModule} from '@angular/material/select';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -23,6 +30,9 @@ import { LoginComponent } from './pages/login/login.component';
 import { DashboardAdminComponent } from './admin/dashboard-admin/dashboard-admin.component';
 import { authInterceptorProviders } from './services/auth.interceptor';
 import { DashboardUserComponent } from './user/dashboard-user/dashboard-user.component';
+import { ListaEventosComponent } from './eventos/lista-eventos/lista-eventos.component';
+import { ListaUsuariosComponent } from './usuarios/lista-usuarios/lista-usuarios.component';
+import { RegistrarUsuarioComponent } from './usuarios/registrar-usuario/registrar-usuario.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +40,10 @@ import { DashboardUserComponent } from './user/dashboard-user/dashboard-user.com
     NavbarComponent,
     LoginComponent,
     DashboardAdminComponent,
-    DashboardUserComponent
+    DashboardUserComponent,
+    ListaEventosComponent,
+    ListaUsuariosComponent,
+    RegistrarUsuarioComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +51,8 @@ import { DashboardUserComponent } from './user/dashboard-user/dashboard-user.com
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
+    //FormControl,
+    ReactiveFormsModule,
     FlexLayoutModule,
 
     MatInputModule,
@@ -47,7 +62,14 @@ import { DashboardUserComponent } from './user/dashboard-user/dashboard-user.com
     MatSidenavModule,
     MatSnackBarModule,
     MatButtonModule,
-    MatListModule
+    MatListModule,
+    MatMenuModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatDialogModule,
+    MatSelectModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
