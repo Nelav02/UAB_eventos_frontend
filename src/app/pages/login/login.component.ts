@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 //import { FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -11,14 +12,12 @@ import { LoginService } from 'src/app/services/login/login.service';
 })
 export class LoginComponent implements OnInit {
 
-  //emailFormControl = new FormControl('', [Validators.required, Validators.email]);
-
   hide = true;
 
-  loginData = {
-    email : '',
-    password : ''
-  }
+  formulario : FormGroup = new FormGroup({
+    email: new FormControl('',[Validators.required]),
+    password: new FormControl('',[Validators.required, Validators.minLength(5)])
+  });
 
   constructor(
     private snack: MatSnackBar,
@@ -30,23 +29,35 @@ export class LoginComponent implements OnInit {
     this.loginService.logOut();
   }
 
+  getEmailError() {
+    if (this.formulario.get('email')?.hasError('required')) {
+      return 'Email requerido';
+    }
+    return this.formulario.get('email')?.hasError('email') ? 'Email inválido' : '';
+  }
+
+  getPasswordError() {
+    if (this.formulario.get('password')?.hasError('required')) {
+      return 'Contraseña requerida';
+    }
+    return this.formulario.get('password')?.hasError('minlength') ? 'Mínimo 5 carácteres' : '';
+  }
+
   formSubmit() {
 
-    if (this.loginData.email.trim() == "" || this.loginData.email.trim() == null) {
-      this.snack.open('El email es requerido !', 'Aceptar', {
+    if (this.formulario.invalid) {
+      this.snack.open('Detalles inválidos, vuelva a intentarlo !', 'Aceptar', {
         duration: 3000
       });
       return;
     }
 
-    if (this.loginData.password.trim() == "" || this.loginData.password.trim() == null) {
-      this.snack.open('La contraseña es requerida !', 'Aceptar', {
-        duration: 3000
-      });
-      return;
+    let loginData: any = {
+      email : this.formulario.get('email')?.value,
+      password : this.formulario.get('password')?.value
     }
 
-    this.loginService.generateToken(this.loginData).subscribe(
+    this.loginService.generateToken(loginData).subscribe(
       (data:any) => {
         console.log(data);
         this.loginService.loginUser(data.token);
@@ -71,7 +82,7 @@ export class LoginComponent implements OnInit {
       },
       (error) => {
         console.log(error);
-        this.snack.open('Detalles inválidos, vuelva a intentarlo !', 'Aceptar', {
+        this.snack.open('Ocurrio un error en el sistema !', 'Aceptar', {
           duration: 3000
         });
       }

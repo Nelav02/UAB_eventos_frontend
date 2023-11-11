@@ -19,23 +19,25 @@
 
                         <h1 class="text-center">Inicio de sesión</h1>
 
-                        <form (ngSubmit)="formSubmit()">
+                        <form (ngSubmit)="formSubmit()" [formGroup]="formulario">
 
                             <mat-form-field class="full-width" appearance="fill">
                                 <mat-label>Email</mat-label>
-                                <input required matInput type="email" name="email" placeholder="Ingresa tu Email" [(ngModel)]="loginData.email">
-                                <mat-hint>Escriba un email válido</mat-hint>
+                                <input required matInput type="email" name="email" placeholder="ejemplo@uab.edu.bo" formControlName="email">
+                                <mat-hint>Ingresa tu email</mat-hint>
+                                <mat-error *ngIf="formulario.get('email')?.invalid">{{ getEmailError() }}</mat-error>
                             </mat-form-field>
 
                             <br><br>
 
                             <mat-form-field class="full-width" appearance="fill">
                                 <mat-label>Contraseña</mat-label>
-                                <input required matInput [type]="hide ? 'password' : 'text'" name="password" placeholder="Ingresa tu contraseña*" [(ngModel)]="loginData.password">
+                                <input required matInput [type]="hide ? 'password' : 'text'" name="password" placeholder="XXXXX" formControlName="password">
                                 <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                                     <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
                                 </button>
-                                <mat-hint>Escriba una contraseña válida</mat-hint>
+                                <mat-hint>Ingresa tu contraseña</mat-hint>
+                                <mat-error *ngIf="formulario.get('password')?.invalid">{{ getPasswordError() }}</mat-error>
                             </mat-form-field>
 
                             <br><br>
