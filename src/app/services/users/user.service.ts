@@ -13,7 +13,7 @@ export class UserService {
   ) { }
 
   public registrarUsuario(user: any): Observable<any> {
-    return this.httpClient.get(`${baseUrl}/auth/register`);
+    return this.httpClient.post(`${baseUrl}/auth/register`, user);
   }
 
   public obtenerListaUsuarios() {

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, FormControl, Validators, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -33,6 +33,7 @@ import { DashboardUserComponent } from './user/dashboard-user/dashboard-user.com
 import { ListaEventosComponent } from './eventos/lista-eventos/lista-eventos.component';
 import { ListaUsuariosComponent } from './usuarios/lista-usuarios/lista-usuarios.component';
 import { RegistrarUsuarioComponent } from './usuarios/registrar-usuario/registrar-usuario.component';
+import { EliminarUsuarioComponent } from './usuarios/eliminar-usuario/eliminar-usuario.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { RegistrarUsuarioComponent } from './usuarios/registrar-usuario/registra
     DashboardUserComponent,
     ListaEventosComponent,
     ListaUsuariosComponent,
-    RegistrarUsuarioComponent
+    RegistrarUsuarioComponent,
+    EliminarUsuarioComponent
   ],
   imports: [
     BrowserModule,

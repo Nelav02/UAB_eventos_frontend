@@ -1,66 +1,93 @@
 <h1 mat-dialog-title> Registrar usuario </h1>
 <mat-divider></mat-divider>
 
-<form>
+<form (ngSubmit)="registrarUser()" [formGroup]="formulario">
     <div mat-dialog-content>
         <mat-form-field appearance="fill" class="spacer-rigth">
             <mat-label>Nombre</mat-label>
-            <input required matInput type="text" placeholder="Ingrese su nombre">
+            <input matInput type="text" placeholder="Ingrese su nombre" formControlName="name">
             <mat-icon matSuffix>person_pin_circle</mat-icon>
+            <mat-error *ngIf="formulario.get('name')?.invalid">{{ getNameError() }}</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
             <mat-label>Apellidos</mat-label>
-            <input required matInput type="text" placeholder="Ingrese su apellido">
+            <input matInput type="text" placeholder="Ingrese su apellido" formControlName="last_name">
             <mat-icon matSuffix>person_pin_circle</mat-icon>
+            <mat-error *ngIf="formulario.get('last_name')?.invalid">{{ getLastNameError() }}</mat-error>
         </mat-form-field>
 
         <br>
 
         <mat-form-field appearance="fill" class="spacer-rigth">
             <mat-label>Email</mat-label>
-            <input required matInput type="email" placeholder="ejemplo@uab.edu.bo" [formControl]="email">
+            <input matInput type="email" placeholder="ejemplo@uab.edu.bo" formControlName="email">
             <mat-icon matSuffix>mail</mat-icon>
-            <mat-error *ngIf="email.invalid">{{ getEmailError() }}</mat-error>
+            <mat-error *ngIf="formulario.get('email')?.invalid">{{ getEmailError() }}</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
             <mat-label>Contraseña</mat-label>
-            <input required matInput type="password" placeholder="Ingrese su contraseña" [type]="hide ? 'password' : 'text'" [formControl]="password">
+            <input matInput type="password" placeholder="Ingrese su contraseña" [type]="hide ? 'password' : 'text'" formControlName="password">
             <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                 <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
             </button>
-            <mat-error *ngIf="password.invalid">{{ getPasswordError() }}</mat-error>
+            <mat-error *ngIf="formulario.get('password')?.invalid">{{ getPasswordError() }}</mat-error>
         </mat-form-field>
 
         <br>
 
         <mat-form-field appearance="fill" class="spacer-rigth">
             <mat-label>Teléfono</mat-label>
-            <input required matInput type="text" maxlength="8" minlength="7" placeholder="777 - 777 - 77" #input>
+            <input matInput type="text" maxlength="8" minlength="7" placeholder="777 - 777 - 77" #input formControlName="phone">
             <mat-hint align="end">{{ input.value.length }}/8</mat-hint>
             <mat-icon matSuffix>phone</mat-icon>
+            <mat-error *ngIf="formulario.get('phone')?.invalid">{{ getPhoneNumberError() }}</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
             <mat-label>Género</mat-label>
-            <mat-select>
+            <mat-select formControlName="genero">
                 <mat-option value="HOMBRE">Hombre</mat-option>
                 <mat-option value="MUJER">Mujer</mat-option>
             </mat-select>
             <mat-icon matSuffix>man</mat-icon>
+            <mat-error *ngIf="formulario.get('genero')?.invalid">{{ getGenderError() }}</mat-error>
         </mat-form-field>
 
         <br>
 
         <mat-form-field appearance="fill" class="spacer-rigth">
             <mat-label>Rol</mat-label>
-            <mat-select>
+            <mat-select formControlName="rol">
                 <mat-option value="ADMIN">Administrador</mat-option>
                 <mat-option value="USER">Técnico</mat-option>
             </mat-select>
             <mat-icon matSuffix>key</mat-icon>
+            <mat-error *ngIf="formulario.get('rol')?.invalid">{{ getRolError() }}</mat-error>
         </mat-form-field>
+
+        <div [hidden]="formulario.get('rol')?.value !== 'USER'">
+            <mat-divider></mat-divider>
+            
+            <mat-form-field appearance="fill" class="spacer-rigth">
+                <mat-label>Entidad financiera</mat-label>
+                <mat-select formControlName="banco">
+                    <mat-option value="BNB">BANCO BNB</mat-option>
+                    <mat-option value="UNION">BANCO UNION</mat-option>
+                    <mat-option value="FASSIL">BANCO FASSIL</mat-option>
+                </mat-select>
+                <mat-icon matSuffix>account_balance</mat-icon>
+                <mat-error *ngIf="formulario.get('banco')?.invalid">{{ getBankError() }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Nro. de Cuenta</mat-label>
+                <input matInput type="text" placeholder="XXXX - XXXX - XXXX" formControlName="cuenta_bancaria">
+                <mat-icon matSuffix>monetization_on</mat-icon>
+                <mat-error *ngIf="formulario.get('cuenta_bancaria')?.invalid">{{ getCuentaBancariaError() }}</mat-error>
+            </mat-form-field>
+        </div>
 
     </div>
 
@@ -70,7 +97,7 @@
       <button mat-flat-button color="warn" (click)="onNoClick()">
         <mat-icon>close</mat-icon> Cancelar
       </button>
-      <button mat-flat-button color="primary">
+      <button mat-flat-button color="primary" type="submit">
         <mat-icon>done</mat-icon> Guardar
       </button>
     </div>

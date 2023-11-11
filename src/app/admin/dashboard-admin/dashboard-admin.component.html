@@ -1,15 +1,16 @@
 <div class="example-container">
     <mat-toolbar color="primary" class="example-toolbar">
-        <button mat-icon-button (click)="snav.toggle()">
+        <button mat-flat-button color="primary" (click)="snav.toggle()">
             <mat-icon>local_library</mat-icon>
+            <h1 class="example-app-name">UAB EVENTOS</h1>
         </button>
-        <h1 class="example-app-name">UAB EVENTOS</h1>
 
         <span class="example-spacer"></span>
         
         <button 
             *ngIf="isLoggedIn && user"
-            mat-button
+            mat-flat-button
+            color="primary"
         >
             {{ user.username }}
         </button>
