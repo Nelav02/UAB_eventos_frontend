@@ -16,8 +16,13 @@ export class UserService {
     return this.httpClient.post(`${baseUrl}/auth/register`, user);
   }
 
-  public obtenerListaUsuarios() {
+  public obtenerListaUsuarios(): Observable<any> {
     return this.httpClient.get(`${baseUrl}/api/management/getAll`);
+  }
+
+  public actualizarUsuario(user: any, id: number) {
+    let param = new HttpParams().set('id', id.toString());
+    return this.httpClient.put(`${baseUrl}/api/management/update`, user, {params: param});
   }
 
   public eliminarUsuario(id: number): Observable<any> {

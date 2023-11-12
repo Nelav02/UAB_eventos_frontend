@@ -12,7 +12,7 @@
           </mat-form-field>
         </td>
         <td style="padding-left: 35%;">
-          <button mat-flat-button class="button-color2" (click)="openDialog()">
+          <button mat-flat-button class="button-color2" (click)="agregarUsuarioDialog()">
             <mat-icon>person_add</mat-icon>
             Nuevo usuario
           </button>
@@ -62,10 +62,10 @@
       <ng-container matColumnDef="acciones">
         <th mat-header-cell *matHeaderCellDef> Acciones </th>
         <td mat-cell *matCellDef="let row">
-          <button mat-mini-fab color="primary" class="button-spacer button-color1">
+          <button mat-mini-fab color="primary" class="button-spacer button-color1" (click)="actualizarUsuarioDialog(row.id)">
             <mat-icon>border_color</mat-icon>
           </button>
-          <button mat-mini-fab color="warn" class="button-spacer" (click)="eliminarUsuario(row.id)">
+          <button mat-mini-fab color="warn" class="button-spacer" (click)="eliminarUsuarioDialog(row.id)">
             <mat-icon>delete</mat-icon>
           </button>
           <button mat-mini-fab color="accent" class="button-color2">

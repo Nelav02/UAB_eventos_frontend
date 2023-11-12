@@ -1,7 +1,7 @@
-<h1 mat-dialog-title> Registrar usuario </h1>
+<h1 mat-dialog-title> Actualizar usuario </h1>
 <mat-divider></mat-divider>
 
-<form (ngSubmit)="registrarUser()" [formGroup]="formulario">
+<form [formGroup]="formulario" (ngSubmit)="actualizarUser()">
     <div mat-dialog-content>
         <mat-form-field appearance="fill" class="spacer-rigth">
             <mat-label>Nombre</mat-label>
@@ -28,7 +28,7 @@
 
         <mat-form-field appearance="fill">
             <mat-label>Contraseña</mat-label>
-            <input matInput placeholder="Ingrese su contraseña" [type]="hide ? 'password' : 'text'" formControlName="password">
+            <input matInput [type]="hide ? 'password' : 'text'" placeholder="ingrese su contraseña" formControlName="password">
             <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                 <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
             </button>
@@ -66,39 +66,17 @@
             <mat-icon matSuffix>key</mat-icon>
             <mat-error *ngIf="formulario.get('rol')?.invalid">{{ getRolError() }}</mat-error>
         </mat-form-field>
-
-        <div [hidden]="formulario.get('rol')?.value !== 'USER'">
-            <mat-divider></mat-divider>
-            
-            <mat-form-field appearance="fill" class="spacer-rigth">
-                <mat-label>Entidad financiera</mat-label>
-                <mat-select formControlName="banco">
-                    <mat-option value="BNB">BANCO BNB</mat-option>
-                    <mat-option value="UNION">BANCO UNION</mat-option>
-                    <mat-option value="FASSIL">BANCO FASSIL</mat-option>
-                </mat-select>
-                <mat-icon matSuffix>account_balance</mat-icon>
-                <mat-error *ngIf="formulario.get('banco')?.invalid">{{ getBankError() }}</mat-error>
-            </mat-form-field>
-
-            <mat-form-field appearance="fill">
-                <mat-label>Nro. de Cuenta</mat-label>
-                <input matInput type="text" placeholder="XXXX - XXXX - XXXX" formControlName="cuenta_bancaria">
-                <mat-icon matSuffix>monetization_on</mat-icon>
-                <mat-error *ngIf="formulario.get('cuenta_bancaria')?.invalid">{{ getCuentaBancariaError() }}</mat-error>
-            </mat-form-field>
-        </div>
-
     </div>
 
     <mat-divider></mat-divider>
 
     <div mat-dialog-actions align="end">
-      <button mat-flat-button color="warn" (click)="cancelar()">
-        <mat-icon>close</mat-icon> Cancelar
-      </button>
-      <button mat-flat-button color="primary" type="submit">
-        <mat-icon>done</mat-icon> Guardar
-      </button>
+        <button mat-flat-button color="warn" (click)="cancelar()" type="button">
+            <mat-icon>close</mat-icon> Cancelar
+        </button>
+
+        <button mat-flat-button color="primary" type="submit">
+            <mat-icon>done</mat-icon> Guardar
+        </button>
     </div>
 </form>

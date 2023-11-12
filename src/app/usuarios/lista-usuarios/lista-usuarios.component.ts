@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { UserService } from 'src/app/services/users/user.service';
 import { RegistrarUsuarioComponent } from '../registrar-usuario/registrar-usuario.component';
 import { EliminarUsuarioComponent } from '../eliminar-usuario/eliminar-usuario.component';
+import { ActualizarUsuarioComponent } from '../actualizar-usuario/actualizar-usuario.component';
 
 export interface UserData {
   id: number,
@@ -14,7 +15,7 @@ export interface UserData {
   email: string,
   telefono: string,
   genero: string,
-  rol: any,
+  roles: any,
   banco: string,
   cuentasBancarias: any
 }
@@ -55,12 +56,20 @@ export class ListaUsuariosComponent implements AfterViewInit, OnInit {
     );
   }
 
-  eliminarUsuario(id: number) {
+  eliminarUsuarioDialog(id: number) {
     const dialogRef = this.dialog.open(EliminarUsuarioComponent, {
       data: {id: id}
     });
 
     dialogRef.afterClosed().subscribe(result => { });
+  }
+
+  actualizarUsuarioDialog(id: number) {
+    let userUpdate = this.dataSource.data.find(user => user.id === id);
+
+    const dialogRef = this.dialog.open(ActualizarUsuarioComponent, {
+      data: { user: userUpdate }
+    })
   }
 
   ngAfterViewInit() {
@@ -77,7 +86,7 @@ export class ListaUsuariosComponent implements AfterViewInit, OnInit {
     }
   }
 
-  openDialog(): void {
+  agregarUsuarioDialog(): void {
     const dialogRef = this.dialog.open(RegistrarUsuarioComponent, { });
 
     dialogRef.afterClosed().subscribe(result => { });

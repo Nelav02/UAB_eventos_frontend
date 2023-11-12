@@ -10,7 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './registrar-usuario.component.html',
   styleUrls: ['./registrar-usuario.component.css']
 })
-export class RegistrarUsuarioComponent {
+export class RegistrarUsuarioComponent implements OnInit{
 
   hide = true;
 
@@ -32,7 +32,12 @@ export class RegistrarUsuarioComponent {
     private snack: MatSnackBar
   ) { }
 
-  onNoClick(): void {
+  ngOnInit(): void {
+    this.formulario.get('rol')?.valueChanges.subscribe(role => this.onRoleChange(role));
+    this.onRoleChange(this.formulario.get('rol')?.value);
+  }
+
+  cancelar(): void {
     this.dialogRef.close();
   }
 
@@ -118,5 +123,15 @@ export class RegistrarUsuarioComponent {
         console.log('Error al registrar usuario',error);
       }
     );
+  }
+
+  onRoleChange(rol: string) {
+    if (rol == 'USER') {
+      this.formulario.get('banco')?.enable();
+      this.formulario.get('cuenta_bancaria')?.enable();
+    } else {
+      this.formulario.get('banco')?.disable();
+      this.formulario.get('cuenta_bancaria')?.disable();
+    }
   }
 }
