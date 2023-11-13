@@ -41,10 +41,6 @@ export class RegistrarUsuarioComponent implements OnInit{
     this.onRoleChange(this.formulario.get('rol')?.value);
   }
 
-  agregarCuentaBancaria() {
-    this.formulario.get('cuentasBancarias')
-  }
-
   cancelar(): void {
     this.dialogRef.close();
   }

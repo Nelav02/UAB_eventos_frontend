@@ -7,6 +7,7 @@ import { UserService } from 'src/app/services/users/user.service';
 import { RegistrarUsuarioComponent } from '../registrar-usuario/registrar-usuario.component';
 import { EliminarUsuarioComponent } from '../eliminar-usuario/eliminar-usuario.component';
 import { ActualizarUsuarioComponent } from '../actualizar-usuario/actualizar-usuario.component';
+import { ActualizarCuentaComponent } from '../actualizar-cuenta/actualizar-cuenta.component';
 
 export interface UserData {
   id: number,
@@ -69,7 +70,15 @@ export class ListaUsuariosComponent implements AfterViewInit, OnInit {
 
     const dialogRef = this.dialog.open(ActualizarUsuarioComponent, {
       data: { user: userUpdate }
-    })
+    });
+  }
+
+  editarCuentaBancaria(id: number) {
+    let userUpdate = this.dataSource.data.find(user => user.id === id);
+
+    const cuentaUpdate = this.dialog.open(ActualizarCuentaComponent, {
+      data: { user: userUpdate }
+    });
   }
 
   ngAfterViewInit() {

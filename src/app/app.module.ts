@@ -35,6 +35,7 @@ import { ListaUsuariosComponent } from './usuarios/lista-usuarios/lista-usuarios
 import { RegistrarUsuarioComponent } from './usuarios/registrar-usuario/registrar-usuario.component';
 import { EliminarUsuarioComponent } from './usuarios/eliminar-usuario/eliminar-usuario.component';
 import { ActualizarUsuarioComponent } from './usuarios/actualizar-usuario/actualizar-usuario.component';
+import { ActualizarCuentaComponent } from './usuarios/actualizar-cuenta/actualizar-cuenta.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { ActualizarUsuarioComponent } from './usuarios/actualizar-usuario/actual
     ListaUsuariosComponent,
     RegistrarUsuarioComponent,
     EliminarUsuarioComponent,
-    ActualizarUsuarioComponent
+    ActualizarUsuarioComponent,
+    ActualizarCuentaComponent
   ],
   imports: [
     BrowserModule,
