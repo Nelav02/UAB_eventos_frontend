@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -8,6 +8,7 @@ import { RegistrarUsuarioComponent } from '../registrar-usuario/registrar-usuari
 import { EliminarUsuarioComponent } from '../eliminar-usuario/eliminar-usuario.component';
 import { ActualizarUsuarioComponent } from '../actualizar-usuario/actualizar-usuario.component';
 import { ActualizarCuentaComponent } from '../actualizar-cuenta/actualizar-cuenta.component';
+import { Subscription } from 'rxjs';
 
 export interface UserData {
   id: number,
@@ -26,11 +27,12 @@ export interface UserData {
   templateUrl: './lista-usuarios.component.html',
   styleUrls: ['./lista-usuarios.component.css']
 })
-export class ListaUsuariosComponent implements AfterViewInit, OnInit {
+export class ListaUsuariosComponent implements AfterViewInit, OnInit, OnDestroy {
 
   displayedColumns: string[] = ['id', 'nombre', 'apellidos', 'email', 'genero', 'rol', 'celular', 'acciones'];
   dataSource: MatTableDataSource<UserData> = new MatTableDataSource<UserData>([]);
   listaUsuario: any = [];
+  suscription !: Subscription;
 
   @ViewChild(MatPaginator, { static: true }) paginator !: MatPaginator;
   @ViewChild(MatSort, {static: true} ) sort !: MatSort;
@@ -42,6 +44,15 @@ export class ListaUsuariosComponent implements AfterViewInit, OnInit {
 
   ngOnInit(): void {
     this.obtenerUsuarios();
+
+    this.suscription = this.userService.refresh$.subscribe(() => {
+      this.obtenerUsuarios();
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.suscription.unsubscribe();
+    console.log('observable cerrado');
   }
 
   private obtenerUsuarios() {
@@ -74,10 +85,11 @@ export class ListaUsuariosComponent implements AfterViewInit, OnInit {
   }
 
   editarCuentaBancaria(id: number) {
-    let userUpdate = this.dataSource.data.find(user => user.id === id);
+    //let userUpdate = this.dataSource.data.find(user => user.id === id);
 
     const cuentaUpdate = this.dialog.open(ActualizarCuentaComponent, {
-      data: { user: userUpdate }
+      //data: { user: userUpdate }
+      data: {id: id}
     });
   }
 

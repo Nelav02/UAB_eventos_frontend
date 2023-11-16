@@ -67,7 +67,7 @@
             <mat-error *ngIf="formulario.get('rol')?.invalid">{{ getRolError() }}</mat-error>
         </mat-form-field>
 
-        <div [formGroup]="cuentaForm" [hidden]="formulario.get('rol')?.value !== 'USER'">
+        <div [hidden]="formulario.get('rol')?.value !== 'USER'">
             <mat-divider></mat-divider>
             
             <mat-form-field appearance="fill" class="spacer-rigth">
@@ -94,7 +94,7 @@
     <mat-divider></mat-divider>
 
     <div mat-dialog-actions align="end">
-      <button mat-flat-button color="warn" (click)="cancelar()">
+      <button mat-flat-button color="warn" (click)="cancelar()" type="button">
         <mat-icon>close</mat-icon> Cancelar
       </button>
       <button mat-flat-button color="primary" type="submit">

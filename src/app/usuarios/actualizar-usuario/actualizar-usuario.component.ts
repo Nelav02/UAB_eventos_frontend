@@ -35,8 +35,7 @@ export class ActualizarUsuarioComponent implements OnInit{
       email: [this.data.user.email, [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(5)]],
       phone: [this.data.user.telefono, [Validators.required, Validators.minLength(7), Validators.maxLength(8)]],
-      genero: [this.data.user.genero, [Validators.required]],
-      rol: [this.data.user.roles[0].name, [Validators.required]]
+      genero: [this.data.user.genero, [Validators.required]]
     });
   }
 
@@ -52,7 +51,6 @@ export class ActualizarUsuarioComponent implements OnInit{
       apellidos: this.formulario.get('last_name')?.value,
       telefono: this.formulario.get('phone')?.value,
       genero: this.formulario.get('genero')?.value,
-      roles: [this.formulario.get('rol')?.value,]
     }
 
     this.userService.actualizarUsuario(userActualizado, this.data.user.id).subscribe(
@@ -109,9 +107,5 @@ export class ActualizarUsuarioComponent implements OnInit{
 
   getGenderError() {
     return this.formulario.get('genero')?.hasError('required') ? 'Género es requerido' : '';
-  }
-
-  getRolError() {
-    return this.formulario.get('rol')?.hasError('required') ? 'Rol requerido' : '';
   }
 }

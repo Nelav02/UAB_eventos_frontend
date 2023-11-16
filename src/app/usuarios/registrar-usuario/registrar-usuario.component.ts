@@ -4,6 +4,7 @@ import {FormControl, Validators, FormsModule, ReactiveFormsModule, FormBuilder, 
 import { UserService } from 'src/app/services/users/user.service';
 import { UserData } from '../lista-usuarios/lista-usuarios.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registrar-usuario',
@@ -22,18 +23,15 @@ export class RegistrarUsuarioComponent implements OnInit{
     phone: new FormControl('',[Validators.required, Validators.minLength(7), Validators.pattern('^[0-9]*$')]),
     genero: new FormControl('',[Validators.required]),
     rol: new FormControl('',[Validators.required]),
-    cuentasBancarias: new FormArray([])
-  });
-
-  cuentaForm : FormGroup = new FormGroup({
     banco: new FormControl('',[Validators.required]),
     cuenta: new FormControl('', [Validators.required])
-  })
+  });
 
   constructor(
     public dialogRef: MatDialogRef<RegistrarUsuarioComponent>,
     private userService: UserService,
-    private snack: MatSnackBar
+    private snack: MatSnackBar,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -96,13 +94,8 @@ export class RegistrarUsuarioComponent implements OnInit{
 
   registrarUser() {
 
-    if (this.formulario.invalid || this.cuentaForm.invalid) {
-      console.log('hola')
+    if (this.formulario.invalid) {
       return;
-    }
-
-    if (this.formulario.get('rol')?.value === 'USER') {
-      (this.formulario.get('cuentasBancarias') as FormArray).push(this.cuentaForm);
     }
 
     let newUser: any = {
@@ -113,18 +106,15 @@ export class RegistrarUsuarioComponent implements OnInit{
       telefono: this.formulario.get('phone')?.value,
       genero: this.formulario.get('genero')?.value,
       banco: this.formulario.get('banco')?.value,
-      cuentasbancarias: this.formulario.get('cuentasBancarias')?.value,
+      cuenta: this.formulario.get('cuenta')?.value,
       roles: [this.formulario.get('rol')?.value,]
     }
 
-    newUser.cuentasbancarias = newUser.cuentasbancarias.reduce((map: {[key: string]: string}, obj: {banco: string, cuenta: string}) => {
-      map[obj.banco] = obj.cuenta;
-      return map;
-    }, {});
-
+    console.log(newUser);
     this.userService.registrarUsuario(newUser).subscribe(
       (response) => {
         this.dialogRef.close();
+        //this.router.navigate(['/admin/lista_usuarios']);
         this.snack.open('Usuario registrado !', 'Aceptar',{
           horizontalPosition: 'start',
           verticalPosition: 'bottom',
@@ -132,6 +122,11 @@ export class RegistrarUsuarioComponent implements OnInit{
         });
       },
       (error) => {
+        this.snack.open('Error al registrar usuario !', 'Aceptar',{
+          horizontalPosition: 'start',
+          verticalPosition: 'bottom',
+          duration: 3000
+        });
         console.log(error);
       }
     );
@@ -139,11 +134,11 @@ export class RegistrarUsuarioComponent implements OnInit{
 
   onRoleChange(rol: string) {
     if (rol == 'USER') {
-      this.cuentaForm.get('banco')?.enable();
-      this.cuentaForm.get('cuenta')?.enable();
+      this.formulario.get('banco')?.enable();
+      this.formulario.get('cuenta')?.enable();
     } else {
-      this.cuentaForm.get('banco')?.disable();
-      this.cuentaForm.get('cuenta')?.disable();
+      this.formulario.get('banco')?.disable();
+      this.formulario.get('cuenta')?.disable();
     }
   }
 }
