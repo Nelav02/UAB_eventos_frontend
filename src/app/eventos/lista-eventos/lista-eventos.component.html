@@ -1,1 +1,37 @@
-<p>lista-eventos works!</p>
+<div style="padding: 30px;">
+
+    <button disabled mat-button style="padding-left: 50px;">
+        <mat-icon>calendar_month</mat-icon> Eventos generales
+    </button>
+
+    <div class="card-container" *ngFor="let evento of listaEventos">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title-group>
+                    <mat-card-title> {{ evento.titulo }} </mat-card-title>
+                    <mat-card-subtitle> Lugar: {{ evento.lugar }}</mat-card-subtitle>
+                    <img mat-card-sm-image src="../../../assets/calendario.png">
+                </mat-card-title-group>
+            </mat-card-header>
+            <mat-card-content>
+                <p>Fecha: {{ evento.fecha }}</p>
+                <p>Requerimientos: {{ evento.requerimientos }}</p>
+                <mat-divider></mat-divider>
+            </mat-card-content>
+            <mat-card-actions align="end">
+                <button mat-mini-fab color="primary" class="button-spacer">
+                    <mat-icon>person_add</mat-icon>
+                </button>
+                <button mat-mini-fab color="accent" class="button-spacer">
+                    <mat-icon>border_color</mat-icon>
+                </button>
+                <button mat-mini-fab color="warn">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </mat-card-actions>
+            <mat-card-footer>
+                <mat-progress-bar mode="determinate"></mat-progress-bar>
+            </mat-card-footer>
+        </mat-card>
+    </div>
+</div>

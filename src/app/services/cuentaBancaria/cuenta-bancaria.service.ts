@@ -21,7 +21,7 @@ export class CuentaBancariaService {
 
   public obtenerCuentasBancarias(id: number): Observable<any> {
     let param1 = new HttpParams().set('userId', id.toString())
-    return this.httpClient.get(`${baseUrl}/api/bank/getCuentasBancarias`, {params: param1});
+    return this.httpClient.get(`${baseUrl}/account/bank/getCuentasBancarias`, {params: param1});
   }
 
   public agregarCuentaBancaria(param1: string, param2: string, param3: number) {
@@ -31,7 +31,7 @@ export class CuentaBancariaService {
       userId: param3
     };
     
-    return this.httpClient.post(`${baseUrl}/api/bank/addCuentaBancaria`, body)
+    return this.httpClient.post(`${baseUrl}/account/bank/addCuentaBancaria`, body)
         .pipe(
           tap(() => {
             this._refresh$.next();
@@ -41,7 +41,7 @@ export class CuentaBancariaService {
 
   public eliminarCuentaBancaria(id: number) {
     let param1 = new HttpParams().set('idCuenta', id.toString());
-    return this.httpClient.delete(`${baseUrl}/api/bank/deleteCuentaBancaria`, {params: param1})
+    return this.httpClient.delete(`${baseUrl}/account/bank/deleteCuentaBancaria`, {params: param1})
         .pipe(
           tap(() => {
             this._refresh$.next();

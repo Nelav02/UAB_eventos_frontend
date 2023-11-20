@@ -63,7 +63,7 @@ export class ActualizarUsuarioComponent implements OnInit{
         });
       },
       (error) => {
-        console.log('Error al registrar usuario',error);
+        console.log('Error al actualizar usuario',error);
       }
     );
   }

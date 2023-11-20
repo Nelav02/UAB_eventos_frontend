@@ -7,7 +7,7 @@
 
 table {
     width: 100%;
-  }
+}
   
 .mat-mdc-form-field {
     font-size: 14px;
@@ -20,7 +20,7 @@ td, th {
 
 .filter-container {
     padding-top: 15px;
-    padding-left: 25px;
+    padding-left: 15px;
     padding-right: 15%;
     padding-bottom: 10px;
 }

@@ -61,6 +61,11 @@ export class ActualizarCuentaComponent implements AfterViewInit, OnInit{
     });
   }
 
+  ngOnDestroy(): void {
+    this.suscription.unsubscribe();
+    console.log('observable cerrado');
+  }
+
   private obtenerListaCuentasBancarias() {
     this.cuentaService.obtenerCuentasBancarias(this.userId.id).subscribe(
       (response) => {

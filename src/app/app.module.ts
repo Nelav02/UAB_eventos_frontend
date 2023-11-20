@@ -23,9 +23,9 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSelectModule} from '@angular/material/select';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './pages/login/login.component';
 import { DashboardAdminComponent } from './admin/dashboard-admin/dashboard-admin.component';
 import { authInterceptorProviders } from './services/auth.interceptor';
@@ -40,7 +40,6 @@ import { ActualizarCuentaComponent } from './usuarios/actualizar-cuenta/actualiz
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
     LoginComponent,
     DashboardAdminComponent,
     DashboardUserComponent,
@@ -75,7 +74,8 @@ import { ActualizarCuentaComponent } from './usuarios/actualizar-cuenta/actualiz
     MatSortModule,
     MatPaginatorModule,
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule,
+    MatProgressBarModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

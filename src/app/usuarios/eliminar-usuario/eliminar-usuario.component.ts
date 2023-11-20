@@ -24,7 +24,6 @@ export class EliminarUsuarioComponent {
   eliminar() {
     this.userService.eliminarUsuario(this.data.id).subscribe(
       (response) => {
-        //console.log('Usuario elimnado con exito', response);
         this.dialogRef.close();
         this.matSnack.open('Usuario eliminado !', 'Aceptar', {
           horizontalPosition: 'start',

@@ -30,8 +30,7 @@ export class RegistrarUsuarioComponent implements OnInit{
   constructor(
     public dialogRef: MatDialogRef<RegistrarUsuarioComponent>,
     private userService: UserService,
-    private snack: MatSnackBar,
-    private router: Router
+    private snack: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -114,7 +113,6 @@ export class RegistrarUsuarioComponent implements OnInit{
     this.userService.registrarUsuario(newUser).subscribe(
       (response) => {
         this.dialogRef.close();
-        //this.router.navigate(['/admin/lista_usuarios']);
         this.snack.open('Usuario registrado !', 'Aceptar',{
           horizontalPosition: 'start',
           verticalPosition: 'bottom',
