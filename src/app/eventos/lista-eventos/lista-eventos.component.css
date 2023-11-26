@@ -7,4 +7,14 @@
 
 .button-spacer {
     margin-right: 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.agregar-spacer {
+    margin-left: 75%;
+}
+
+.propiedades-spacer{
+    margin-bottom: 5px;
 }

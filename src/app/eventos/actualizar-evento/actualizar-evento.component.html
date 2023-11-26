@@ -1,0 +1,79 @@
+<h1 mat-dialog-title> Actualizar evento </h1>
+<mat-divider></mat-divider>
+
+<form [formGroup]="formulario" (ngSubmit)="actualizarEvento()">
+    <div mat-dialog-content>
+        <mat-form-field appearance="fill" class="example-full-width spacer-top">
+            <mat-label>Título</mat-label>
+            <input matInput type="text" placeholder="Título del evento" formControlName="titulo">
+            <mat-icon matSuffix>title</mat-icon>
+            <mat-error *ngIf="formulario.get('titulo')?.invalid">{{ getTituloError() }}</mat-error>
+        </mat-form-field>
+
+        <br>
+
+        <mat-form-field appearance="fill" class="example-full-width spacer-top">
+            <mat-label>Lugar</mat-label>
+            <input matInput type="text" placeholder="Lugar del evento" formControlName="lugar">
+            <mat-icon matSuffix>location_on</mat-icon>
+            <mat-error *ngIf="formulario.get('lugar')?.invalid">{{ getLugarError() }}</mat-error>
+        </mat-form-field>
+
+        <br>
+
+        <mat-form-field appearance="fill" class="example-full-width spacer-top">
+            <mat-label>Fecha del evento</mat-label>
+            <input matInput [matDatepicker]="fecha" formControlName="fecha">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="fecha"></mat-datepicker-toggle>
+            <mat-datepicker #fecha></mat-datepicker>
+            <mat-error *ngIf="formulario.get('fecha')?.invalid">{{ getFechaError() }}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="example-full-width spacer-top">
+            <mat-label>Requerimientos</mat-label>
+            <textarea matInput placeholder="Requerimientos del evento" formControlName="requerimientos"></textarea>
+            <mat-error *ngIf="formulario.get('requerimientos')?.invalid">{{ getRequerimientosError() }}</mat-error>
+        </mat-form-field>
+
+        <br>
+
+        <mat-form-field appearance="fill" class="spacer-rigth">
+            <mat-label>Hora inicio</mat-label>
+            <input matInput
+                [format]="24"
+                [ngxMatTimepicker]="horaInicio"
+                placeholder="HH:MM"
+                readonly
+                formControlName="horaInicio">
+            <mat-icon matSuffix (click)="horaInicio.open()">watch_later</mat-icon>
+            <mat-error *ngIf="formulario.get('horaInicio')?.invalid">{{ getHoraInicioError() }}</mat-error>
+        </mat-form-field>
+        <ngx-mat-timepicker color="warn" #horaInicio></ngx-mat-timepicker>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Hora final</mat-label>
+            <input matInput
+                [format]="24"
+                [ngxMatTimepicker]="horaFin"
+                placeholder="HH:MM"
+                readonly
+                formControlName="horaFinal"/>
+            <mat-icon matSuffix (click)="horaFin.open()">watch_later</mat-icon>
+            <mat-error *ngIf="formulario.get('horaFinal')?.invalid">{{ getHoraFinalError() }}</mat-error>
+        </mat-form-field>
+        <ngx-mat-timepicker color="warn" #horaFin></ngx-mat-timepicker>
+
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div mat-dialog-actions align="end">
+        <button mat-flat-button color="warn" (click)="cancelar()" type="button">
+            <mat-icon>close</mat-icon> Cancelar
+        </button>
+        <button mat-flat-button color="primary" type="submit">
+            <mat-icon>done</mat-icon> Actualizar
+        </button>
+    </div>
+</form>

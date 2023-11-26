@@ -4,31 +4,43 @@
         <mat-icon>calendar_month</mat-icon> Eventos generales
     </button>
 
+    <button mat-flat-button color="primary" class="agregar-spacer" (click)="agregarEventoDialog()">
+        <mat-icon>event_upcoming</mat-icon> Agregar evento
+    </button>
+
     <div class="card-container" *ngFor="let evento of listaEventos">
         <mat-card>
             <mat-card-header>
                 <mat-card-title-group>
-                    <mat-card-title> {{ evento.titulo }} </mat-card-title>
-                    <mat-card-subtitle> Lugar: {{ evento.lugar }}</mat-card-subtitle>
-                    <img mat-card-sm-image src="../../../assets/calendario.png">
+                    <mat-card-title style="margin-bottom: 15px;">#{{ evento.id }} {{ evento.titulo }} </mat-card-title>
+                    <mat-card-subtitle class="propiedades-spacer"><strong>Lugar:</strong> {{ evento.lugar }}</mat-card-subtitle>
+                    <mat-card-subtitle class="propiedades-spacer"><strong>Fecha:</strong> {{ evento.fecha }}</mat-card-subtitle>
+                    <mat-card-subtitle class="propiedades-spacer"><strong>Hora de inicio:</strong> {{ evento.horaInicio }}</mat-card-subtitle>
+                    <mat-card-subtitle class="propiedades-spacer"><strong>Hora de salida:</strong> {{ evento.horaFinal }}</mat-card-subtitle>
+                    <mat-card-subtitle class="propiedades-spacer"><strong>Requerimientos:</strong> {{ evento.requerimientos }}</mat-card-subtitle>                    
+                    <img mat-card-lg-image src="../../../assets/calendario.png">
                 </mat-card-title-group>
             </mat-card-header>
             <mat-card-content>
-                <p>Fecha: {{ evento.fecha }}</p>
-                <p>Requerimientos: {{ evento.requerimientos }}</p>
                 <mat-divider></mat-divider>
+                <div *ngIf="evento.horaInicio === '00:00:00' || evento.horaFinal === '00:00:00'" style="padding-top: 5px;">
+                    <h5 style="color: red; padding-top: 6px;">ATENCIÓN: Registre hora de inicio y fin del evento</h5>
+                    <mat-divider></mat-divider>
+                </div>
+
             </mat-card-content>
             <mat-card-actions align="end">
                 <button mat-mini-fab color="primary" class="button-spacer">
-                    <mat-icon>person_add</mat-icon>
+                    <mat-icon>perm_contact_calendar</mat-icon>
                 </button>
-                <button mat-mini-fab color="accent" class="button-spacer">
-                    <mat-icon>border_color</mat-icon>
+                <button mat-mini-fab color="accent" class="button-spacer" (click)="actualizaEventoDialog(evento.id)">
+                    <mat-icon>edit_calendar</mat-icon>
                 </button>
-                <button mat-mini-fab color="warn">
-                    <mat-icon>delete</mat-icon>
+                <button mat-mini-fab color="warn" class="button-spacer" (click)="eliminarEventoDialog(evento.id)">
+                    <mat-icon>event_busy</mat-icon>
                 </button>
             </mat-card-actions>
+
             <mat-card-footer>
                 <mat-progress-bar mode="determinate"></mat-progress-bar>
             </mat-card-footer>

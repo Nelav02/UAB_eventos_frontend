@@ -65,14 +65,16 @@
       <ng-container matColumnDef="acciones">
         <th mat-header-cell *matHeaderCellDef> Acciones </th>
         <td mat-cell *matCellDef="let row">
+          <button mat-mini-fab color="primary" class="button-spacer" (click)="editarCuentaBancaria(row.id)">
+            <mat-icon>account_balance</mat-icon>
+          </button>
+
           <button mat-mini-fab color="accent" class="button-spacer" (click)="actualizarUsuarioDialog(row.id)">
             <mat-icon>border_color</mat-icon>
           </button>
+
           <button mat-mini-fab color="warn" class="button-spacer" (click)="eliminarUsuarioDialog(row.id)">
             <mat-icon>delete</mat-icon>
-          </button>
-          <button mat-mini-fab color="primary" (click)="editarCuentaBancaria(row.id)">
-            <mat-icon>account_balance</mat-icon>
           </button>
         </td>
       </ng-container>

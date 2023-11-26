@@ -24,6 +24,11 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSelectModule} from '@angular/material/select';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {NgxMatTimepickerModule} from 'ngx-mat-timepicker';
+import {MAT_DATE_FORMATS, MatNativeDateModule} from '@angular/material/core';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { LoginComponent } from './pages/login/login.component';
@@ -36,6 +41,9 @@ import { RegistrarUsuarioComponent } from './usuarios/registrar-usuario/registra
 import { EliminarUsuarioComponent } from './usuarios/eliminar-usuario/eliminar-usuario.component';
 import { ActualizarUsuarioComponent } from './usuarios/actualizar-usuario/actualizar-usuario.component';
 import { ActualizarCuentaComponent } from './usuarios/actualizar-cuenta/actualizar-cuenta.component';
+import { MY_FORMATS, RegistrarEventoComponent } from './eventos/registrar-evento/registrar-evento.component';
+import { EliminarEventoComponent } from './eventos/eliminar-evento/eliminar-evento.component';
+import { ActualizarEventoComponent } from './eventos/actualizar-evento/actualizar-evento.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +56,10 @@ import { ActualizarCuentaComponent } from './usuarios/actualizar-cuenta/actualiz
     RegistrarUsuarioComponent,
     EliminarUsuarioComponent,
     ActualizarUsuarioComponent,
-    ActualizarCuentaComponent
+    ActualizarCuentaComponent,
+    RegistrarEventoComponent,
+    EliminarEventoComponent,
+    ActualizarEventoComponent
   ],
   imports: [
     BrowserModule,
@@ -75,9 +86,16 @@ import { ActualizarCuentaComponent } from './usuarios/actualizar-cuenta/actualiz
     MatPaginatorModule,
     MatDialogModule,
     MatSelectModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatGridListModule,
+    NgxMaterialTimepickerModule,
+    NgxMatTimepickerModule
   ],
-  providers: [authInterceptorProviders],
+  providers: [
+    authInterceptorProviders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
