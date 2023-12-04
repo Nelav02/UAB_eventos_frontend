@@ -66,7 +66,6 @@ export class RegistrarEventoComponent {
       horaFinal: this.formulario.get('horaFinal')?.value + ':00'
     }
 
-    console.log(newEvento);
     this.eventoService.registrarEvento(newEvento).subscribe(
       (reponse) => {
         this.dialogRef.close();

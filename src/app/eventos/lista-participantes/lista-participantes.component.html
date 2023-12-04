@@ -1,0 +1,42 @@
+<div style="padding: 20px;">
+    <h1 mat-dialog-title> Lista de candidatos </h1>
+    <mat-divider></mat-divider>
+
+    <form>
+        <div mat-dialog-content>
+            <mat-form-field appearance="fill" class="example-full-width">
+                <mat-label>Técnicos</mat-label>
+                <mat-select [formControl]="toppings" multiple>
+                    <mat-select-trigger>
+                        {{toppings.value?.[0] || ''}}
+                        <span *ngIf="(toppings.value?.length || 0) > 1" class="example-additional-selection">
+                            (+{{(toppings.value?.length || 0) - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}})
+                        </span>
+                    </mat-select-trigger>
+                    <mat-option *ngFor="let topping of listaParticipantes" [value]="topping">{{topping.email}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <div mat-dialog-actions align="end">
+                <button mat-flat-button color="warn" type="button" (click)="cancelar()">
+                    <mat-icon>close</mat-icon> Cancelar
+                </button>
+                <button mat-flat-button color="primary" type="submit">
+                    <mat-icon>done</mat-icon> Confirmar
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <mat-divider></mat-divider>
+
+    <h1 mat-dialog-title> Técnicos confirmados </h1>
+
+    <div mat-dialog-content>
+
+    </div>
+
+    <div *ngIf="" style="padding-left: 25px;">
+        <h3>No hay técnicos registrados</h3>
+    </div>
+</div>

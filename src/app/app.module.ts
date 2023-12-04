@@ -44,6 +44,10 @@ import { ActualizarCuentaComponent } from './usuarios/actualizar-cuenta/actualiz
 import { MY_FORMATS, RegistrarEventoComponent } from './eventos/registrar-evento/registrar-evento.component';
 import { EliminarEventoComponent } from './eventos/eliminar-evento/eliminar-evento.component';
 import { ActualizarEventoComponent } from './eventos/actualizar-evento/actualizar-evento.component';
+import { ListaParticipantesComponent } from './eventos/lista-participantes/lista-participantes.component';
+import { ListaEventosGeneralesComponent } from './user/eventos-generales/lista-eventos-generales/lista-eventos-generales.component';
+import { EnviarSolicitudComponent } from './user/eventos-generales/enviar-solicitud/enviar-solicitud.component';
+import { EliminarSolicitudComponent } from './user/eliminar-solicitud/eliminar-solicitud.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +63,11 @@ import { ActualizarEventoComponent } from './eventos/actualizar-evento/actualiza
     ActualizarCuentaComponent,
     RegistrarEventoComponent,
     EliminarEventoComponent,
-    ActualizarEventoComponent
+    ActualizarEventoComponent,
+    ListaParticipantesComponent,
+    ListaEventosGeneralesComponent,
+    EnviarSolicitudComponent,
+    EliminarSolicitudComponent
   ],
   imports: [
     BrowserModule,

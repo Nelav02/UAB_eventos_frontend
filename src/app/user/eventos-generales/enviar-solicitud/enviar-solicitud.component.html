@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Enviar solicitud</h1>
+<div mat-dialog-content>
+    ¿ Está seguro de solicitar participar de este evento ?
+</div>
+
+<mat-divider></mat-divider>
+
+<div mat-dialog-actions align="end">
+    <button mat-flat-button color="warn" (click)="cancelar()">
+        <mat-icon>close</mat-icon> Cancelar
+    </button>
+    <button mat-flat-button color="primary" (click)="enviarSolicitud()">
+        <mat-icon>done</mat-icon> Solicitar
+    </button>
+</div>

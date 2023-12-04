@@ -19,8 +19,19 @@ export class EventosService {
     return this._refresh$;
   }
 
+  // deprecated
   public obtenerListaEventos(): Observable<EventoData[]> {
     return this.httpClient.get<EventoData[]>(`${baseUrl}/event/management/getAllEventos`);
+  }
+
+  public obtenerEventosPorFase(fase: string): Observable<EventoData[]> {
+    let param = new HttpParams().set('fase', fase.toString())
+    return this.httpClient.get<EventoData[]>(`${baseUrl}/event/management/getEventosByFase`, {params: param});
+  }
+
+  public obtenerUsuariosByEvento(eventoId: number): Observable<any> {
+    let param = new HttpParams().set('eventoId', eventoId);
+    return this.httpClient.get<EventoData[]>(`${baseUrl}/event/management/getUsuariosByEvento`, {params: param});
   }
 
   public registrarEvento(evento: any): Observable<any> {

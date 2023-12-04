@@ -7,6 +7,7 @@ import { DashboardUserComponent } from './user/dashboard-user/dashboard-user.com
 import { userGuard } from './services/guards/user.guard';
 import { ListaUsuariosComponent } from './usuarios/lista-usuarios/lista-usuarios.component';
 import { ListaEventosComponent } from './eventos/lista-eventos/lista-eventos.component';
+import { ListaEventosGeneralesComponent } from './user/eventos-generales/lista-eventos-generales/lista-eventos-generales.component';
 
 const routes: Routes = [
   {
@@ -24,7 +25,7 @@ const routes: Routes = [
         component: ListaUsuariosComponent
       },
       {
-        path: 'lista_eventos',
+        path: 'lista_eventos_generales',
         component: ListaEventosComponent
       }
     ]
@@ -32,7 +33,13 @@ const routes: Routes = [
   {
     path: 'user',
     component: DashboardUserComponent,
-    canActivate: [userGuard]
+    canActivate: [userGuard],
+    children: [
+      {
+        path: 'lista_eventos_generales',
+        component: ListaEventosGeneralesComponent
+      }
+    ]
   }
 ];
 

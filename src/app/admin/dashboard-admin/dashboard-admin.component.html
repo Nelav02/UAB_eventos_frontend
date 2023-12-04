@@ -26,7 +26,8 @@
             <button
                 *ngIf="isLoggedIn"
                 (click) = "logOut()"
-                mat-menu-item>
+                mat-menu-item
+            >
                 <mat-icon>logout</mat-icon>
                 <span>Cerrar sesión</span>
             </button>
@@ -54,7 +55,7 @@
                     <mat-icon matListItemIcon>group</mat-icon> Usuarios
                 </button>
 
-                <button mat-list-item routerLink="/admin/lista_eventos">
+                <button mat-list-item routerLink="/admin/lista_eventos_generales">
                     <mat-icon matListItemIcon>calendar_month</mat-icon> Eventos generales
                 </button>
 

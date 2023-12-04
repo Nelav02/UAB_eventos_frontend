@@ -5,6 +5,7 @@ import { EventosService } from 'src/app/services/eventos/eventos.service';
 import { RegistrarEventoComponent } from '../registrar-evento/registrar-evento.component';
 import { EliminarEventoComponent } from '../eliminar-evento/eliminar-evento.component';
 import { ActualizarEventoComponent } from '../actualizar-evento/actualizar-evento.component';
+import { ListaParticipantesComponent } from '../lista-participantes/lista-participantes.component';
 
 export interface EventoData {
   id: number,
@@ -23,7 +24,7 @@ export interface EventoData {
 })
 export class ListaEventosComponent implements OnInit {
 
-  listaEventos !: EventoData[];
+  listaEventosGenerales !: EventoData[];
   suscription !: Subscription
 
   constructor(
@@ -32,18 +33,18 @@ export class ListaEventosComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.obtenerEventos();
+    this.obtenerEventosGenerales();
 
     this.suscription = this.eventoService.refresh$.subscribe(() => {
-      this.obtenerEventos();
+      this.obtenerEventosGenerales();
     })
   }
 
-  private obtenerEventos() {
-    this.eventoService.obtenerListaEventos().subscribe(
+  private obtenerEventosGenerales() {
+    this.eventoService.obtenerEventosPorFase('GENERAL').subscribe(
       (datos) => {
-        this.listaEventos = datos;
-        console.log(this.listaEventos);
+        this.listaEventosGenerales = datos;
+        console.log(this.listaEventosGenerales);
       },
       (error) => {
         console.log(error);
@@ -58,11 +59,19 @@ export class ListaEventosComponent implements OnInit {
   }
 
   actualizaEventoDialog(id: number) {
-    let eventoUpdate = this.listaEventos.find(evento => evento.id === id);
+    let eventoUpdate = this.listaEventosGenerales.find(evento => evento.id === id);
 
     const dialogRef = this.dialog.open(ActualizarEventoComponent, {
       data: { evento: eventoUpdate}
     });
+  }
+
+  seleccionarParticipantesEvento(id: number) {
+    let dialogRef = this.dialog.open(ListaParticipantesComponent, {
+      data: { id: id }
+    });
+
+    dialogRef.afterClosed().subscribe(result => { });
   }
 
   eliminarEventoDialog(id: number) {

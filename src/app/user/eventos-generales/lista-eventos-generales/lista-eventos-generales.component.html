@@ -1,14 +1,10 @@
 <div style="padding: 30px;">
-
+    
     <button disabled mat-button style="padding-left: 50px;">
         <mat-icon>calendar_month</mat-icon> Eventos generales
     </button>
 
-    <button mat-flat-button color="primary" class="agregar-spacer" (click)="agregarEventoDialog()">
-        <mat-icon>event_upcoming</mat-icon> Agregar evento
-    </button>
-
-    <div class="card-container" *ngFor="let evento of listaEventosGenerales">
+    <div class="card-container" *ngFor="let evento of listEventosGenerales">
         <mat-card>
             <mat-card-header>
                 <mat-card-title-group>
@@ -21,27 +17,14 @@
                     <img mat-card-lg-image src="../../../assets/calendario.png">
                 </mat-card-title-group>
             </mat-card-header>
-            <mat-card-content>
-                
-                <mat-divider></mat-divider>
-                <div *ngIf="evento.horaInicio === '00:00:00' || evento.horaFinal === '00:00:00'" style="padding-top: 5px;">
-                    <h5 style="color: red; padding-top: 6px;">ATENCIÓN: Registre hora de inicio y fin del evento</h5>
-                    <mat-divider></mat-divider>
-                </div>
+            <mat-divider></mat-divider>
 
-            </mat-card-content>
             <mat-card-actions align="end">
-                <button mat-mini-fab color="primary" class="button-spacer button-color">
-                    <mat-icon>check_box</mat-icon>
+                <button [disabled]="botonSolicitar" mat-flat-button color="accent" class="button-spacer" (click)="registrarSolicitudDialog(evento.id)">
+                    <mat-icon>touch_app</mat-icon> Solicitar
                 </button>
-                <button mat-mini-fab color="primary" class="button-spacer" (click)="seleccionarParticipantesEvento(evento.id)">
-                    <mat-icon>perm_contact_calendar</mat-icon>
-                </button>
-                <button mat-mini-fab color="accent" class="button-spacer" (click)="actualizaEventoDialog(evento.id)">
-                    <mat-icon>edit_calendar</mat-icon>
-                </button>
-                <button mat-mini-fab color="warn" class="button-spacer" (click)="eliminarEventoDialog(evento.id)">
-                    <mat-icon>event_busy</mat-icon>
+                <button [disabled]="!botonSolicitar" mat-flat-button color="warn" class="button-spacer" (click)="eliminarSolicitudDialog(evento.id)">
+                    <mat-icon>cancel</mat-icon> Eliminar
                 </button>
             </mat-card-actions>
 
